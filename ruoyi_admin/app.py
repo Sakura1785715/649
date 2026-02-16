@@ -5,7 +5,9 @@ from flask import Flask
 from ruoyi_common.base.signal import app_completed
 from ruoyi_common.ruoyi.extension import FlaskRuoYi
 from ruoyi_common.config import RuoYiConfig
-from ruoyi_admin.controller.atp.prediction import atp_bp
+# 注册 PHM 模块（你的业务模块）
+
+
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ruoyi = FlaskRuoYi()
@@ -36,8 +38,8 @@ def create_app():
     except ImportError:
         print("测试模块未找到或未正确配置")
 
-    app.register_blueprint(atp_bp)
-
+    from ruoyi_phm import init_app as phm_init_app
+    phm_init_app(app)
     # 所有扩展和模块完成初始化后，发送应用完成信号
     app_completed.send(app)
 

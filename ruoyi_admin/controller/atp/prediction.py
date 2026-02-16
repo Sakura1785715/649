@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify
 # 注意：这里我们引用的是第四步的“全局变量”，而不是具体的 Mock 类
 # 这就是“依赖倒置原则”，代码耦合度极低！
-from ruoyi_admin.service.atp.algorithm import current_predictor
+from ruoyi_admin.service.atp.algorithm import get_current_predictor
 
 atp_bp = Blueprint('atp_prediction', __name__, url_prefix='/atp/prediction')
 
@@ -12,7 +12,8 @@ def infer():
         # input_data = request.json 
         
         # 2. 调用核心算法（不管它是谁，反正它能 predict）
-        result = current_predictor.predict([])
+        predictor = get_current_predictor()
+        result = predictor.predict([])
         
         # 3. 返回标准格式
         return jsonify({
