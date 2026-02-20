@@ -93,7 +93,7 @@
 
           <div class="remember-row">
             <el-checkbox v-model="loginForm.rememberMe">Remember ID</el-checkbox>
-            <a href="#" class="forgot-link">Forgot Password?</a>
+            <a href="#" class="forgot-link" @click.prevent="handleForgetPwd">Forgot Password?</a>
           </div>
 
           <el-form-item style="width:100%;">
@@ -175,6 +175,11 @@ export default {
           this.loginForm.uuid = res.uuid
         }
       })
+    },
+    handleForgetPwd() {
+      // alert("探针测试：按钮点击事件已成功触发！");
+      // console.log("---- 准备跳转路由 ----");
+      this.$router.push('/forgetPwd');
     },
     getCookie() {
       const username = Cookies.get('username')

@@ -7,8 +7,8 @@ import { getToken } from '@/utils/auth'
 import { isRelogin } from '@/utils/request'
 
 NProgress.configure({ showSpinner: false })
-
-const whiteList = ['/login', '/auth-redirect', '/bind', '/register']
+// 免登录白名单
+const whiteList = ['/login', '/auth-redirect', '/bind', '/register', '/forgetPwd'];
 
 router.beforeEach((to, from, next) => {
   NProgress.start()

@@ -57,3 +57,12 @@ export function getCodeImg() {
     timeout: 20000
   })
 }
+
+// 重置密码接口
+export function resetPwd(data) {
+  return request({
+    url: '/resetPwd',
+    method: 'post',
+    data: data
+  })
+}
